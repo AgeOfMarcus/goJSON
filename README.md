@@ -19,4 +19,4 @@ A python client for https://db.neelr.dev/
     # delete data
     c.delete()
 
-*see gojson/__init__.py for more it's literally 19 lines*
+*see gojson/\_\_init__.py for more it's literally 19 lines*
