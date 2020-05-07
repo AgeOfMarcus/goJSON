@@ -1,6 +1,6 @@
-import requests, json
+import requests, json, jsonpickle
 
-class Client(object):
+class OldClient(object):
     def __init__(self, token):
         self.url = "https://db.neelr.dev/api/%s/" % token
     
@@ -17,3 +17,24 @@ class Client(object):
     def delete(self, key=""):
         r = requests.delete(self.url + key)
         return r.status_code == 204
+
+class Client(object):
+    def __init__(self, token):
+        self.url = "https://db.neelr.dev/api/%s/" % token
+    
+    def store(self, key, data):
+        r = requests.post(self.url + key, data=jsonpickle.dumps(data))
+        return (r.status_code == 201), r.content.decode()
+    
+    def retrieve(self, key):
+        r = requests.get(self.url + key)
+        if r.status_code == 404:
+            return None
+        return jsonpickle.loads(r.content.decode())
+    
+    def delete(self, key):
+        r = requests.delete(self.url + key)
+        return r.status_code == 204
+    
+    def pull(self):
+        return requests.get(self.url).json()

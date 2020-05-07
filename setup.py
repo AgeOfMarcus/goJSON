@@ -5,7 +5,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setuptools.setup(name="gojson",
-    version="1.0.0",
+    version="1.1.0",
     description="A python library for https://db.neelr.dev/",
     long_description=read("README.md"),
     url="https://github.com/AgeOfMarcus/gojson",
@@ -13,5 +13,5 @@ setuptools.setup(name="gojson",
     author_email="marcus@marcusweinberger.com",
     packages=setuptools.find_packages(),
     zip_safe=False,
-    install_requires=['requests']
+    install_requires=['requests', 'jsonpickle']
 )
